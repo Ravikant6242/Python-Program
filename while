@@ -1,0 +1,9 @@
+count=0
+while count<3:
+    password=input("Enter the password: ")
+    count+=1
+    if password=="secret":
+        print("Access granted")
+        break
+    else:
+        print("Access denied,attempts left:",3-count)

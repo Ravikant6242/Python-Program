@@ -1,0 +1,6 @@
+sal=list(range(20000,41000,2000))
+print(sal)
+for i in range(len(sal)):
+    sal[i] += 5000
+
+print("after update:",sal)

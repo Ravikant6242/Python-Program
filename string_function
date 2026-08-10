@@ -1,0 +1,22 @@
+names=["   amit ","rahul   ","  sneha","rohit","  priya"]
+sales=[150,300,250,100,500,180,350]
+sale1=[]
+print(names)
+for i in names:
+ names[names.index(i)] = i.strip()
+
+print("Names stripping:", names) 
+for i in names:
+ names[names.index(i)] = i.upper()
+print("Upper case:", names) 
+print("sum of sales:",sum(sales))
+for j in sales:
+ if j > 300:
+     sale1.append(j)
+
+print("sale greater than 300:",sale1)
+
+combine=[]
+for i in zip(names,sales):
+    combine.append(i)
+print("combined list:",combine)

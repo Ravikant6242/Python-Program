@@ -1,0 +1,19 @@
+inventory=["Towel","Bathmat","Bedsheet","Duvet"]
+print(inventory)
+inventory.append("Pillow")
+print("After append",inventory)
+inventory.remove("Bathmat")
+print("After remove",inventory)
+C_input=input("Enter the item you want to check in inventory: ")
+if C_input in inventory:
+    print(C_input,"is available in inventory")
+else:
+    print(C_input,"is not available in inventory")  
+# print("The inventory list is:",inventory[1:4:1])
+# del inventory[0]
+# print("After deleting the first item, the inventory list is:",inventory)
+
+
+
+
+ 

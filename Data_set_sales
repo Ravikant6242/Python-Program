@@ -1,0 +1,10 @@
+sale=[1200,1500,1700,1300,1600]
+print("Total sales of the day:",sum(sale))
+print("Average sales of the day:",sum(sale)/len(sale))
+
+
+              
+
+
+
+

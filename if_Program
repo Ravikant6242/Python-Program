@@ -1,0 +1,7 @@
+stu_name=str(input("Enter Student name: "))
+Marks=int(input("Enter Student Marks: "))
+if(Marks>=90):
+    print(stu_name,"you have scored excellent marks")
+else:
+    print("you should try next time")
+    

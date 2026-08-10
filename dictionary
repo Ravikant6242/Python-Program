@@ -1,0 +1,47 @@
+# key = []
+# my_dict = {}
+# for i in range(4):
+#     print("Enter the user",i+1,":",end="")
+#     key.append(input())
+
+# for k in key:
+#     print("Enter password for user",k,":",end="")
+#     my_dict[k] = input()
+
+# print("Final dictionary:", my_dict)
+
+# user=input("Enter the user to check password:")
+# if user in my_dict:
+#     print("Password for user",user,"is:",my_dict[user])
+
+
+key = []
+my_dict = {}
+i=1
+j=4
+while i<=j:
+    print("Enter the user",i,":",end="")
+    user=input()
+    if user in key:
+        print("User already exists. Please enter a different user.")
+        continue
+    key.append(user)
+    
+    for k in key:
+        if k in my_dict:
+            continue
+        print("Enter password for user",i,":",end="")
+        my_dict[k] = input()
+        if j<=4:
+         i+=1
+        else:
+         break        
+
+
+print("Final dictionary:", my_dict)
+
+user=input("Enter the user to check password:")
+if user in my_dict:
+    print("Password for user",user,"is:",my_dict[user])
+        
+    
