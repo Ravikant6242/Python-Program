@@ -1,0 +1,82 @@
+import csv
+ticket_catogry = []
+ticket_status = []
+ticket_priority = []
+ticket_city = []
+ticket_Id=[]
+cus_name=[]
+with open("customer_tickets.csv", "r") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+      text1=row["Issue_Category"]
+      text2=row["Status"]
+      text3=row["Priority"]
+      text4=row["City"]
+      text5=row["Ticket_ID"]
+      clean_text1=text1.strip()
+      clean_text2=text2.strip()
+      clean_text3=text3.strip()
+      ticket_catogry.append(clean_text1)
+      ticket_status.append(clean_text2)
+      ticket_priority.append(clean_text3)
+      ticket_city.append(text4)
+      ticket_Id.append(text5)
+      
+      if text1=="Payment":
+            text6=row["Customer_Name"]
+            cus_name.append(text6)
+
+uniue_ticket=set(ticket_catogry)
+unique_status=set(ticket_status)
+unique_priority=set(ticket_priority)
+unique_city=set(ticket_city)
+print("Ticket belong to each category:")
+for i in uniue_ticket:
+    print("Ticket count for=",i,ticket_catogry.count(i))
+
+print("=====================================")
+print("status of tickets")
+for i in unique_status:
+    print("Status count for=",i,ticket_status.count(i))
+
+print("=====================================")
+if "High" in unique_priority:
+    print("High priority ticket count=",ticket_priority.count("High"))  
+
+print("=====================================")
+print("city wise tickets:")
+max1=[]
+my_max={}
+for i in unique_city:
+    print("Ticket count for city",i,ticket_city.count(i))
+    max1.append(ticket_city.count(i))
+print("====Maximum complaint====")
+for i in unique_city:
+    if ticket_city.count(i) == max(max1):
+     print("Ticket count for city",i,":",max(max1))   
+
+# print(max(ticket_city,key=ticket_city.count),":",max(max1))
+print("================================")
+for i in uniue_ticket:
+    if i=="Payment":
+     print("Ticket count for",i,":",ticket_catogry.count(i)) 
+     break 
+print("================================")
+print("Customer having Payment issue",cus_name)
+
+   
+       
+    
+
+
+    
+
+
+   
+
+         
+
+
+
+
+            
