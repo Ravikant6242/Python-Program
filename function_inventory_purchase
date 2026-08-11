@@ -1,0 +1,38 @@
+
+def purchase(inventory):
+ cart={}
+ i=1
+ while i<=3:
+       item=input("Enter item to purchase: ")
+       if item in inventory:
+           qty=int(input("Enter qty: "))
+           cart[item]=qty
+           i=i+1
+       else:
+          print("Enetr Valid Item")   
+         
+
+ return cart
+
+def invoice(inventory,cart):
+    sum=0
+    for i in cart:
+        sum=sum+(cart[i]*inventory[i])
+    return sum
+    
+def discount(sum):
+    disc=(sum*10)/100
+    return sum-disc
+
+
+inventory={"Towel":1000,"Bathmat":2000,"Bed sheet":4500,"Duvet":2100,"Pillow":1100}
+print("Item with price:\n",inventory)
+cart=purchase(inventory)
+print("Your purchase list: \n",cart)
+print("===Invoice Total===")
+for i in cart:
+ print(i,":","\t",cart[i],"*",inventory[i],"=",cart[i]*inventory[i])
+
+print("Total Value:","\t",invoice(inventory,cart))
+sum=invoice(inventory,cart)
+print("After Discount\nTotal value",discount(sum))
