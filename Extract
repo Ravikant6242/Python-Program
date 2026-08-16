@@ -1,0 +1,42 @@
+import csv
+import re
+import pandas as pd
+
+list_Id=[]
+list_Name=[]
+list_Address=[]
+list_Pincode=[]
+list_city=[]
+with open("D:\\Python\\Maspar\\Data.csv","r") as file:
+ reader=csv.DictReader(file)
+ for row in reader:
+     text1=row["Address"] 
+     text2=row["Order id"]
+     text3=row["Name"]
+     text2=text2[(text2.find(":"))+1::]
+     cleanText2=text2.strip()
+     cleanText1=text1.strip()
+     cleanText1=text1.replace("\n"," ")
+     cleanText1=cleanText1[0:-11:]
+     match=re.search(r'\b\d{6}\b',cleanText1)
+     cleanText1=cleanText1[0:(match.end())+1]
+    #  pincode=re.findall(r'\b\d{6}\b',cleanText1)
+     match2=re.search(r'\b\d{6}\b',cleanText1)
+     pincode=cleanText1[match.start()::]
+     cleanText1=cleanText1[0:(match.start())-1]
+     city=cleanText1[cleanText1.rfind(" ")::]
+     list_Id.append(cleanText2)
+     list_Name.append(text3)
+     list_Address.append(cleanText1)
+     list_Pincode.append(pincode)
+     list_city.append(city)
+     
+
+my_data={"Order Id":list_Id,"Name":list_Name,"Address":list_Address,"City":list_city,"Pin code":list_Pincode}    
+my_data1=pd.DataFrame(my_data)
+
+my_data1.to_excel("D:\\Python\\Maspar\\Extracted Data.xlsx",index=False)
+print("Data exported successfully!")
+
+   
+

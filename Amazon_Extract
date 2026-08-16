@@ -1,0 +1,43 @@
+import re
+import pandas as pd
+list_OrderID=[]
+list_Name=[]
+list_Address=[]
+list_City=[]
+list_pincode=[]
+from pypdf import PdfReader
+reader=PdfReader("D:\\Python\\Maspar\\Amazon.pdf")
+num_pages=len(reader.pages)
+for page in reader.pages:
+ text=page.extract_text()
+ Morder=re.search(r"\b\d{3}.*-(\d{7}.*-)(\d{7})\b",text,re.DOTALL)
+ order_ID=(Morder.group()).strip()
+
+ shipping = re.search(r"Shipping Address :\s*(.*IN)", text, re.DOTALL)
+ address1=shipping.group(1)
+ name=address1[:address1.find("\n",0):]
+ address1=address1.replace("\n"," ")
+ addresslist=address1.split()
+ cleanadd=" ".join(addresslist)
+ pincode1=re.search(r"\b\d{6}\b",cleanadd)
+ pincode=pincode1.group()
+ match=re.search(r"\b\d{6}\b",cleanadd)
+ address=cleanadd[:match.start()-2:]
+ address=address[:address.rfind(","):]
+ city=address[address.rfind(" ")::]
+ new_address=address.replace(name,"",2)
+ list_Name.append(name)
+ list_Address.append(new_address)
+ list_City.append(city)
+ list_pincode.append(pincode)
+ list_OrderID.append(order_ID)
+
+data={"OrderID":list_OrderID,"Name":list_Name,"Address":list_Address,"City":list_City,"Pincode":list_pincode} 
+new_data=pd.DataFrame(data)
+new_data.to_excel("D:\\Python\\Maspar\\Amazon data.xlsx",index=False)
+print("Data Exported")
+ 
+ 
+ 
+
+ 
